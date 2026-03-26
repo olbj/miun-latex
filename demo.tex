@@ -1,0 +1,107 @@
+%% demo.tex — Demonstrates the capabilities of the miun document class.
+%% Compile with: pdflatex demo.tex  (run twice for correct headers/footers)
+
+\documentclass{miun}
+
+\usepackage{lipsum}   % Lorem-ipsum placeholder text
+
+%% ── Document metadata ───────────────────────────────────────────────────────
+\title{Mid Sweden University Report Template}
+\miunsubtitle{A Demonstration of the \texttt{miun} Document Class}
+\miuncourse{DT000A — Academic Writing with \LaTeX{}}
+\author{Jane Doe \and John Smith}
+\miundate{26 March 2026}
+\miunversion{1.0}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{document}
+
+\maketitle          % Branded title page with logo
+
+% ── Abstract / Executive summary ─────────────────────────────────────────────
+\begin{abstract}
+  \lipsum[1]
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Introduction}
+
+\lipsum[2]
+
+This document demonstrates the main features of the \texttt{miun} class:
+\begin{itemize}
+  \item Custom MIUN title page with logo, subtitle, course, author, date and
+        version number.
+  \item Branded heading colours (dark-red rule below \verb|\section|).
+  \item Sans-serif body font (Helvetica/Arial substitute).
+  \item Fancy header (title + logo) and footer (author + page number).
+  \item Clickable \href{https://www.miun.se}{hyperlinks} styled in MIUN red.
+  \item Abstract / executive-summary box.
+\end{itemize}
+
+\lipsum[3]
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Background}
+
+\lipsum[4-5]
+
+\subsection{Related Work}
+
+\lipsum[6]
+
+\subsubsection{Prior Art}
+
+\lipsum[7]
+
+\subsubsection{Gaps in the Literature}
+
+\lipsum[8]
+
+\subsection{Problem Statement}
+
+\lipsum[9]
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Method}
+
+\lipsum[10-11]
+
+\subsection{Data Collection}
+
+\lipsum[12]
+
+\subsection{Analysis}
+
+\lipsum[13]
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Results}
+
+\lipsum[14-15]
+
+\subsection{Quantitative Findings}
+
+\lipsum[16]
+
+\subsection{Qualitative Findings}
+
+\lipsum[17]
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Discussion}
+
+\lipsum[18-19]
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Conclusion}
+
+\lipsum[20]
+
+For more information about Mid Sweden University, visit
+\href{https://www.miun.se}{www.miun.se}.
+
+\end{document}

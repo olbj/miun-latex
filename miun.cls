@@ -118,7 +118,7 @@
 
 %% Header: document title on the left, optional logo on the right
 \fancyhead[L]{\small\nouppercase{\@title}}
-%\fancyhead[R]{\includegraphics[height=0.8cm]{miun-logo}}  % uncomment when logo file is available
+\fancyhead[R]{\includegraphics[height=0.8cm]{Miun_logotyp_CMYK}}
 
 %% Footer: author on the left, page number on the right
 \fancyfoot[L]{\small\@author}
@@ -153,8 +153,7 @@
     \raggedright
     \vspace*{2cm}
 
-    %% Optional logo — uncomment when miun-logo.pdf / .png is available:
-    % \includegraphics[width=5cm]{miun-logo}\\[1cm]
+    \includegraphics[width=5cm]{Miun_logotyp_CMYK}\\[1cm]
 
     {\Huge\bfseries\color{miunred}\@title\par}
     \vspace{0.4cm}
