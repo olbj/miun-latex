@@ -40,7 +40,7 @@
 \RequirePackage{fancyhdr}             % Headers and footers
 \RequirePackage{setspace}             % Line spacing
 \RequirePackage{parskip}              % Space between paragraphs
-\RequirePackage{hyperref}             % Clickable links / PDF metadata
+\RequirePackage[colorlinks=true]{hyperref} % Clickable links / PDF metadata
 \RequirePackage{helvet}               % Helvetica (Arial substitute)
 \RequirePackage{microtype}            % Improved text rendering
 
@@ -54,7 +54,7 @@
   bottom = 2.5cm,
   left   = 3.0cm,
   right  = 3.0cm,
-  headheight = 15pt,
+  headheight = 30pt,
 }
 
 
@@ -81,12 +81,26 @@
 \gdef\@miundate{\today}
 \gdef\@miunversion{}
 
+%% Helper: include the MIUN logo with given graphicx options, or nothing if absent
+\newcommand{\@miunlogoinclude}[1]{%
+  \IfFileExists{Miun_logotyp_CMYK.png}{%
+    \includegraphics[#1]{Miun_logotyp_CMYK.png}}{%
+    \IfFileExists{MU_logotyp_int_CMYK.jpg}{%
+      \includegraphics[#1]{MU_logotyp_int_CMYK.jpg}}{}}}
+
 
 % ============================================================
 % 6. HEADING STYLES
 % ============================================================
 %% MIUN brand colour — a dark red/crimson (adjust to match logo)
 \definecolor{miunred}{RGB}{167,26,26}
+
+%% hyperref link colours (colorlinks loaded at package level above)
+\hypersetup{
+  linkcolor  = miunred,
+  urlcolor   = miunred,
+  citecolor  = miunred,
+}
 
 %% Heading 1 — large, coloured, with a bottom rule
 \titleformat{\section}
@@ -118,10 +132,10 @@
 
 %% Header: document title on the left, optional logo on the right
 \fancyhead[L]{\small\nouppercase{\@title}}
-\fancyhead[R]{\includegraphics[height=0.8cm]{Miun_logotyp_CMYK}}
+\fancyhead[R]{\@miunlogoinclude{height=0.8cm}}
 
 %% Footer: author on the left, page number on the right
-\fancyfoot[L]{\small\@author}
+\fancyfoot[L]{\small\def\and{,\space}\@author}
 \fancyfoot[R]{\small\thepage}
 
 %% Thin rule only under the header
@@ -153,7 +167,7 @@
     \raggedright
     \vspace*{2cm}
 
-    \includegraphics[width=5cm]{Miun_logotyp_CMYK}\\[1cm]
+    \@miunlogoinclude{width=5cm}\par\vspace{1cm}
 
     {\Huge\bfseries\color{miunred}\@title\par}
     \vspace{0.4cm}
@@ -169,7 +183,7 @@
     \fi
 
     \vspace{1cm}
-    {\large\@author\par}
+    {\large\def\and{,\space}\@author\par}
     \vspace{0.4cm}
     {\normalsize\@miundate\par}
 
@@ -199,15 +213,18 @@
   \vspace{1em}
 }
 
-%% hyperref setup — fill in PDF metadata automatically
+%% hyperref PDF metadata — disable problematic commands before expanding
+%% \and in \author expands to a tabular construct that breaks PDF strings
 \AtBeginDocument{%
+  \pdfstringdefDisableCommands{%
+    \def\and{ and }%
+    \def\texttt#1{#1}%
+    \def\LaTeX{LaTeX}%
+    \def\TeX{TeX}%
+  }%
   \hypersetup{
     pdftitle  = {\@title},
     pdfauthor = {\@author},
-    colorlinks = true,
-    linkcolor  = miunred,
-    urlcolor   = miunred,
-    citecolor  = miunred,
   }%
 }
 
